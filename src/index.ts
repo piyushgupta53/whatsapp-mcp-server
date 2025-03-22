@@ -3,6 +3,8 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { openSessionTool } from "./tools/openSession";
 import { z } from "zod";
 import { sendMessageTool } from "./tools/sendMessage";
+import { getChatsTool } from "./tools/getChats";
+import { createGroupTool } from "./tools/createGroup";
 
 async function main() {
   const server = new McpServer({
@@ -34,6 +36,30 @@ async function main() {
       message: z.string().describe("The message to send"),
     },
     sendMessageTool.handler
+  );
+
+  // register get_chats tool
+  server.tool(
+    getChatsTool.name,
+    getChatsTool.description,
+    {
+      sessionId: z.string().describe("Session ID from open_session"),
+    },
+    getChatsTool.handler
+  );
+
+  // register create_group tool
+  server.tool(
+    createGroupTool.name,
+    createGroupTool.description,
+    {
+      sessionId: z.string(),
+      groupName: z.string(),
+      participants: z
+        .array(z.string())
+        .describe("Array of phone numbers with domain (e.g. 12345@c.us)"),
+    },
+    createGroupTool.handler
   );
 
   const transport = new StdioServerTransport();
