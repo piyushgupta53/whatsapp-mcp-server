@@ -7,10 +7,12 @@ import { getChatsTool } from "./tools/getChats";
 import { createGroupTool } from "./tools/createGroup";
 import { getChatHistoryTool } from "./tools/getChatHistory";
 import { sendFileTool } from "./tools/sendFile";
+import { addParticipantTool } from "./tools/addParticipant";
+import { removeParticipantTool } from "./tools/removeParticipant";
 
 async function main() {
   const server = new McpServer({
-    name: "whatsapp-server",
+    name: "whatsapp-mcp-server",
     version: "1.0.0",
   });
 
@@ -99,6 +101,30 @@ async function main() {
         .describe("Optional caption below the file"),
     },
     sendFileTool.handler
+  );
+
+  // register add_participant tool
+  server.tool(
+    addParticipantTool.name,
+    addParticipantTool.description,
+    {
+      sessionId: z.string(),
+      groupId: z.string(),
+      participantChatId: z.string(),
+    },
+    addParticipantTool.handler
+  );
+
+  // register remove_participant tool
+  server.tool(
+    removeParticipantTool.name,
+    removeParticipantTool.description,
+    {
+      sessionId: z.string(),
+      groupId: z.string(),
+      participantChatId: z.string(),
+    },
+    removeParticipantTool.handler
   );
 
   const transport = new StdioServerTransport();

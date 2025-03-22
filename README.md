@@ -109,6 +109,26 @@ Parameters:
 - `fileName`: (Optional) Name of the file as seen by recipient
 - `caption`: (Optional) Caption text to display below the file
 
+### Add Participant
+
+Adds a participant to an existing WhatsApp group.
+
+Parameters:
+
+- `sessionId`: Session ID from open_session
+- `groupId`: ID of the WhatsApp group (e.g., group@g.us)
+- `participantChatId`: Chat ID of the participant to add (e.g., 1234567890@c.us)
+
+### Remove Participant
+
+Removes a participant from an existing WhatsApp group.
+
+Parameters:
+
+- `sessionId`: Session ID from open_session
+- `groupId`: ID of the WhatsApp group (e.g., group@g.us)
+- `participantChatId`: Chat ID of the participant to remove (e.g., 1234567890@c.us)
+
 > **Important**: To receive incoming messages in the chat history, you need to enable the "Receive webhooks on incoming messages and files" setting using the SetSettings method or through the GreenAPI console. Without this setting enabled, the chat history will only show outgoing messages.
 
 ## Development

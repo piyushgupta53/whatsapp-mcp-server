@@ -51,3 +51,25 @@ export async function sendFileByUrl(
 
   return res.data;
 }
+
+export async function addGroupParticipant(
+  instanceId: string,
+  apiTokenInstance: string,
+  groupId: string,
+  participantChatId: string
+) {
+  const url = `https://api.green-api.com/waInstance${instanceId}/addGroupParticipant/${apiTokenInstance}`;
+  const res = await axios.post(url, { groupId, participantChatId });
+  return res.data;
+}
+
+export async function removeGroupParticipant(
+  instanceId: string,
+  apiTokenInstance: string,
+  groupId: string,
+  participantChatId: string
+) {
+  const url = `https://api.green-api.com/waInstance${instanceId}/removeGroupParticipant/${apiTokenInstance}`;
+  const res = await axios.post(url, { groupId, participantChatId });
+  return res.data;
+}
