@@ -97,6 +97,8 @@ Parameters:
 - `chatId`: Chat ID to retrieve messages from (e.g., 1234567890@c.us or group@g.us)
 - `count`: Number of messages to retrieve (default: 50)
 
+> **Important**: To receive incoming messages in the chat history, you need to enable the "Receive webhooks on incoming messages and files" setting using the SetSettings method or through the GreenAPI console. Without this setting enabled, the chat history will only show outgoing messages.
+
 ## Development
 
 The project is structured as follows:

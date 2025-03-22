@@ -1,6 +1,5 @@
 import { getChatHistory } from "../greenapi";
 import { getSession } from "../session";
-import axios from "axios";
 import { formatChatMessage } from "../utils/formatChatMessage";
 
 export const getChatHistoryTool = {
