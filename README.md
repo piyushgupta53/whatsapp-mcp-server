@@ -59,6 +59,34 @@ Parameters:
 - `instanceId`: GreenAPI instance ID
 - `apiTokenInstance`: GreenAPI API token
 
+### Send Message
+
+Sends a message to a specified chat.
+
+Parameters:
+
+- `sessionId`: Session ID from open_session
+- `chatId`: Recipient chat ID (e.g., 1234567890@c.us or group@g.us)
+- `message`: The message to send
+
+### Get Chats
+
+Retrieves the list of available chats.
+
+Parameters:
+
+- `sessionId`: Session ID from open_session
+
+### Create Group
+
+Creates a new WhatsApp group.
+
+Parameters:
+
+- `sessionId`: Session ID from open_session
+- `groupName`: Name of the group to create
+- `participants`: Array of phone numbers with domain (e.g. 12345@c.us)
+
 ## Development
 
 The project is structured as follows:
@@ -67,7 +95,10 @@ The project is structured as follows:
 src/
   ├── index.ts           # Main server entry point
   ├── tools/            # MCP tools implementation
-  │   └── openSession.ts # WhatsApp session management tool
+  │   ├── openSession.ts # WhatsApp session management tool
+  │   ├── sendMessage.ts # Message sending tool
+  │   ├── getChats.ts   # Chat listing tool
+  │   └── createGroup.ts # Group creation tool
   └── types/            # TypeScript type definitions
 ```
 
