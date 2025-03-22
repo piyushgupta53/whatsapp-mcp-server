@@ -13,7 +13,7 @@ export function formatErrorResponse(error: unknown, context: string) {
     isError: true,
     content: [
       {
-        type: "text",
+        type: "text" as const,
         text: `❌ ${context} failed: ${message}`,
       },
     ],
