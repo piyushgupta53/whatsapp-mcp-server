@@ -5,6 +5,7 @@ import { z } from "zod";
 import { sendMessageTool } from "./tools/sendMessage";
 import { getChatsTool } from "./tools/getChats";
 import { createGroupTool } from "./tools/createGroup";
+import { getChatHistoryTool } from "./tools/getChatHistory";
 
 async function main() {
   const server = new McpServer({
@@ -60,6 +61,23 @@ async function main() {
         .describe("Array of phone numbers with domain (e.g. 12345@c.us)"),
     },
     createGroupTool.handler
+  );
+
+  // register get_chat_history tool
+  server.tool(
+    getChatHistoryTool.name,
+    getChatHistoryTool.description,
+    {
+      sessionId: z.string().describe("Session ID from open_session"),
+      chatId: z
+        .string()
+        .describe("Chat ID (e.g., 1234567890@c.us or group@g.us)"),
+      count: z
+        .number()
+        .optional()
+        .describe("Number of messages to retrieve (default 50)"),
+    },
+    getChatHistoryTool.handler
   );
 
   const transport = new StdioServerTransport();

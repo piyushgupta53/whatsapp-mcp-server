@@ -17,3 +17,15 @@ export async function sendMessageToWhatsapp(
 
   return res.data;
 }
+
+export async function getChatHistory(
+  instanceId: string,
+  apiTokenInstance: string,
+  chatId: string,
+  count = 10
+) {
+  const url = `https://api.green-api.com/waInstance${instanceId}/getChatHistory/${apiTokenInstance}`;
+
+  const res = await axios.post(url, { chatId, count });
+  return res.data;
+}

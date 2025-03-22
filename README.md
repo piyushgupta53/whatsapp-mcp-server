@@ -87,6 +87,16 @@ Parameters:
 - `groupName`: Name of the group to create
 - `participants`: Array of phone numbers with domain (e.g. 12345@c.us)
 
+### Get Chat History
+
+Retrieves recent messages from a specified chat (personal or group).
+
+Parameters:
+
+- `sessionId`: Session ID from open_session
+- `chatId`: Chat ID to retrieve messages from (e.g., 1234567890@c.us or group@g.us)
+- `count`: Number of messages to retrieve (default: 50)
+
 ## Development
 
 The project is structured as follows:
