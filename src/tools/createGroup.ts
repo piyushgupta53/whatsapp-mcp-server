@@ -1,6 +1,6 @@
-import { unknown } from "zod";
 import { getSession } from "../session";
 import axios from "axios";
+import { formatErrorResponse } from "../utils/errors";
 
 export const createGroupTool = {
   name: "create_group",
@@ -36,15 +36,7 @@ export const createGroupTool = {
         ],
       };
     } catch (error: any) {
-      return {
-        isError: true,
-        content: [
-          {
-            type: "text" as const,
-            text: `❌ Failed to create group: ${error.message}`,
-          },
-        ],
-      };
+      return formatErrorResponse(error, "Create group");
     }
   },
 };

@@ -1,5 +1,6 @@
 import { getSession } from "../session";
 import { sendFileByUrl } from "../greenapi";
+import { formatErrorResponse } from "../utils/errors";
 
 export const sendFileTool = {
   name: "send_file",
@@ -43,18 +44,7 @@ export const sendFileTool = {
         _meta: {},
       };
     } catch (error: any) {
-      return {
-        isError: true,
-        content: [
-          {
-            type: "text" as const,
-            text: `❌ Failed to send file: ${
-              error?.response?.data?.message || error.message
-            }`,
-          },
-        ],
-        _meta: {},
-      };
+      return formatErrorResponse(error, "Send file");
     }
   },
 };

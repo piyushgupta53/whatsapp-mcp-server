@@ -1,5 +1,6 @@
 import { getSession } from "../session";
 import axios from "axios";
+import { formatErrorResponse } from "../utils/errors";
 
 export const getChatsTool = {
   name: "get_chats",
@@ -39,15 +40,7 @@ export const getChatsTool = {
         ],
       };
     } catch (error: any) {
-      return {
-        isError: true,
-        content: [
-          {
-            type: "text" as const,
-            text: `❌ Failed to fetch chats: ${error.message}`,
-          },
-        ],
-      };
+      return formatErrorResponse(error, "Get chats");
     }
   },
 };

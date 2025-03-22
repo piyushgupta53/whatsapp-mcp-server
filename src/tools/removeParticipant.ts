@@ -1,5 +1,6 @@
 import { getSession } from "../session.js";
 import { removeGroupParticipant } from "../greenapi.js";
+import { formatErrorResponse } from "../utils/errors.js";
 
 export const removeParticipantTool = {
   name: "remove_participant",
@@ -37,16 +38,8 @@ export const removeParticipantTool = {
           },
         ],
       };
-    } catch (err: any) {
-      return {
-        isError: true,
-        content: [
-          {
-            type: "text" as const,
-            text: `❌ Error: ${err?.response?.data?.message || err.message}`,
-          },
-        ],
-      };
+    } catch (error: any) {
+      return formatErrorResponse(error, "Remove participant");
     }
   },
 };

@@ -1,5 +1,6 @@
 import { getSession } from "../session";
 import { sendMessageToWhatsapp } from "../greenapi";
+import { formatErrorResponse } from "../utils/errors";
 
 export const sendMessageTool = {
   name: "send_message",
@@ -38,17 +39,7 @@ export const sendMessageTool = {
         ],
       };
     } catch (error: any) {
-      const errorMessage =
-        error?.response?.data?.message || error.message || "Unknown error";
-      return {
-        isError: true,
-        content: [
-          {
-            type: "text" as const,
-            text: `❌ Failed to send message: ${errorMessage}`,
-          },
-        ],
-      };
+      return formatErrorResponse(error, "Send message");
     }
   },
 };

@@ -1,5 +1,6 @@
 import { getSession } from "../session.js";
 import { addGroupParticipant } from "../greenapi.js";
+import { formatErrorResponse } from "../utils/errors.js";
 
 export const addParticipantTool = {
   name: "add_participant",
@@ -38,16 +39,8 @@ export const addParticipantTool = {
           },
         ],
       };
-    } catch (err: any) {
-      return {
-        isError: true,
-        content: [
-          {
-            type: "text" as const,
-            text: `❌ Error: ${err?.response?.data?.message || err.message}`,
-          },
-        ],
-      };
+    } catch (error: any) {
+      return formatErrorResponse(error, "Add participant");
     }
   },
 };

@@ -1,5 +1,6 @@
 import { getChatHistory } from "../greenapi";
 import { getSession } from "../session";
+import { formatErrorResponse } from "../utils/errors";
 import { formatChatMessage } from "../utils/formatChatMessage";
 
 export const getChatHistoryTool = {
@@ -53,17 +54,7 @@ export const getChatHistoryTool = {
         content: [{ type: "text" as const, text: formatted }],
       };
     } catch (error: any) {
-      return {
-        isError: true,
-        content: [
-          {
-            type: "text" as const,
-            text: `❌ Failed to retreive chat history: ${
-              error?.response?.data?.message || error.message
-            }`,
-          },
-        ],
-      };
+      return formatErrorResponse(error, "Get chat history");
     }
   },
 };
