@@ -6,6 +6,7 @@ import { sendMessageTool } from "./tools/sendMessage";
 import { getChatsTool } from "./tools/getChats";
 import { createGroupTool } from "./tools/createGroup";
 import { getChatHistoryTool } from "./tools/getChatHistory";
+import { sendFileTool } from "./tools/sendFile";
 
 async function main() {
   const server = new McpServer({
@@ -78,6 +79,26 @@ async function main() {
         .describe("Number of messages to retrieve (default 50)"),
     },
     getChatHistoryTool.handler
+  );
+
+  //register send_file tool
+  server.tool(
+    sendFileTool.name,
+    sendFileTool.description,
+    {
+      sessionId: z.string(),
+      chatId: z.string().describe("WhatsApp chat ID (e.g., 1234567890@c.us)"),
+      fileUrl: z.string().url().describe("Public URL of the file to send"),
+      fileName: z
+        .string()
+        .optional()
+        .describe("Name of the file as seen by recipient"),
+      caption: z
+        .string()
+        .optional()
+        .describe("Optional caption below the file"),
+    },
+    sendFileTool.handler
   );
 
   const transport = new StdioServerTransport();

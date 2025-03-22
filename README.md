@@ -97,6 +97,18 @@ Parameters:
 - `chatId`: Chat ID to retrieve messages from (e.g., 1234567890@c.us or group@g.us)
 - `count`: Number of messages to retrieve (default: 50)
 
+### Send File
+
+Sends a file to a specified chat.
+
+Parameters:
+
+- `sessionId`: Session ID from open_session
+- `chatId`: WhatsApp chat ID (e.g., 1234567890@c.us)
+- `fileUrl`: Public URL of the file to send
+- `fileName`: (Optional) Name of the file as seen by recipient
+- `caption`: (Optional) Caption text to display below the file
+
 > **Important**: To receive incoming messages in the chat history, you need to enable the "Receive webhooks on incoming messages and files" setting using the SetSettings method or through the GreenAPI console. Without this setting enabled, the chat history will only show outgoing messages.
 
 ## Development

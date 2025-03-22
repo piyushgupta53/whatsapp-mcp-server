@@ -29,3 +29,25 @@ export async function getChatHistory(
   const res = await axios.post(url, { chatId, count });
   return res.data;
 }
+
+export async function sendFileByUrl(
+  instanceId: string,
+  apiTokenInstance: string,
+  chatId: string,
+  fileUrl: string,
+  fileName: string,
+  caption?: string
+) {
+  const url = `https://api.green-api.com/waInstance${instanceId}/sendFileByUrl/${apiTokenInstance}`;
+
+  const payload = {
+    chatId,
+    urlFile: fileUrl,
+    fileName: fileName || "file",
+    caption: caption || "",
+  };
+
+  const res = await axios.post(url, payload);
+
+  return res.data;
+}
