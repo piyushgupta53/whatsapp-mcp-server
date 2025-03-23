@@ -32,3 +32,6 @@ coverage/
 # Temporary files
 tmp/
 temp/ 
+
+# Compiled JavaScript files
+*.js
