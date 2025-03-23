@@ -13,6 +13,7 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.7.0",
     "axios": "^1.8.4",
+    "cors": "^2.8.5",
     "express": "^5.0.1",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.5",
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.1"
   }
 }
