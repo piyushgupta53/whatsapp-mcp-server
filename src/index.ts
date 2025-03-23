@@ -1,4 +1,4 @@
-import express, { Request, Response, RequestHandler } from "express";
+import express, { RequestHandler } from "express";
 import cors from "cors";
 import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
 import { createMcpServer } from "./mcpServer.js";
@@ -9,7 +9,7 @@ const port = parseInt(process.env.PORT || "3001", 10);
 // Enable CORS for all routes
 app.use(cors());
 
-// OPTIONAL: Add a simple health check route
+// Add a simple health check route
 app.get("/health", (req, res) => {
   res.status(200).send("OK");
 });
@@ -25,7 +25,6 @@ app.get("/sse", async (req, res) => {
     transport = new SSEServerTransport("/messages", res);
     await server.connect(transport);
     console.log("✅ SSE connected.");
-    // NOTE: Do NOT end the response — SSE must stay open
   } catch (error) {
     console.error("❌ Error in /sse route:", error);
     res.status(500).send("Internal Server Error");
