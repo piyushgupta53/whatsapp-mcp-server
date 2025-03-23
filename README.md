@@ -97,6 +97,8 @@ Parameters:
 - `chatId`: Chat ID to retrieve messages from (e.g., 1234567890@c.us or group@g.us)
 - `count`: Number of messages to retrieve (default: 50)
 
+> **Important**: To receive incoming messages in the chat history, you need to enable the "Receive webhooks on incoming messages and files" setting using the SetSettings method or through the GreenAPI console. Without this setting enabled, the chat history will only show outgoing messages.
+
 ### Send File
 
 Sends a file to a specified chat.
@@ -128,22 +130,3 @@ Parameters:
 - `sessionId`: Session ID from open_session
 - `groupId`: ID of the WhatsApp group (e.g., group@g.us)
 - `participantChatId`: Chat ID of the participant to remove (e.g., 1234567890@c.us)
-
-> **Important**: To receive incoming messages in the chat history, you need to enable the "Receive webhooks on incoming messages and files" setting using the SetSettings method or through the GreenAPI console. Without this setting enabled, the chat history will only show outgoing messages.
-
-## Development
-
-The project is structured as follows:
-
-```
-src/
-  ├── index.ts           # Main server entry point
-  ├── tools/            # MCP tools implementation
-  │   ├── openSession.ts # WhatsApp session management tool
-  │   ├── sendMessage.ts # Message sending tool
-  │   ├── getChats.ts   # Chat listing tool
-  │   └── createGroup.ts # Group creation tool
-  └── types/            # TypeScript type definitions
-```
-
-## License
